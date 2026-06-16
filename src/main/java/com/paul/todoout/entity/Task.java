@@ -34,12 +34,12 @@ public class Task {
 	private LocalDate createdAt;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "category_id")
 	private Category category;
 	
 	public Task() {
 		
-	};
+	}
 	
 	public Task(Long id, String title) {
 		this.id = id;
