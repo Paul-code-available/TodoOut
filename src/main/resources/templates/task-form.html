@@ -13,6 +13,42 @@
 	
 	<form th:action="@{/tasks}" th:object="${task}" method="post">
 		
+		<div class="content"> 
+		
+			<input type="text" th:field="*{title}" />
+
+			<input type="text" th:field="*{description}" />
+
+			<select th:field="*{status}">
+			    <option th:each="status : ${T(com.paul.todoout.enums.TaskStatus).values()}"
+			            th:value="${status}"
+			            th:text="${status}">
+			    </option>
+			</select>
+
+			<select th:field="*{priority}">
+			    <option th:each="priority : ${T(com.paul.todoout.enums.TaskPriority).values()}"
+			            th:value="${priority}"
+			            th:text="${priority}">
+			    </option>
+			</select>
+
+			<input type="date" th:field="*{dueDate}">
+		
+		</div>
+		
+		<div class="buttons">
+		
+			<button type="submit"
+			        th:text="${task.id == null} ? 'Crear tarea' : 'Actualizar tarea'">
+			</button>
+			
+			<a th:href="@{/tasks}">
+			    Cancelar
+			</a>
+		
+		</div>
+		
 	</form>
   
 </body>

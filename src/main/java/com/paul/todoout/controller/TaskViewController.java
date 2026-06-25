@@ -27,6 +27,7 @@ public class TaskViewController {
 	@GetMapping("/new")
 	public String showCreateForm(Model model) {
 		model.addAttribute("task", new Task());
+		
 		return "task-form";
 		
 	}
