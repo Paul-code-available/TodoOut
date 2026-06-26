@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	
+	
+	
+	<form th:action="@{/tasks}" th:object="${task}" method="post" class="task-form">
+
+		<div class="form-group">
+			<h1 th:text="${task.id == null ? 'Crear tarea' : 'Actualizar tarea'}"></h1>
+		</div>
+		
+	    <div class="form-group">
+	        <input type="text" th:field="*{description}" placeholder="Descripción" />
+	    </div>
+
+	    <div class="form-group">
+	        <select th:field="*{status}">
+	            <option th:each="status : ${T(com.paul.todoout.enums.TaskStatus).values()}"
+	                    th:value="${status}"
+	                    th:text="${status}">
+	            </option>
+	        </select>
+	    </div>
+
+	    <div class="form-group">
+	        <select th:field="*{priority}">
+	            <option th:each="priority : ${T(com.paul.todoout.enums.TaskPriority).values()}"
+	                    th:value="${priority}"
+	                    th:text="${priority}">
+	            </option>
+	        </select>
+	    </div>
+
+	    <div class="form-group">
+	        <input type="date" th:field="*{dueDate}">
+	    </div>
+
+	    <div class="buttons">
+	        <button type="submit"
+	                th:text="${task.id == null} ? 'Crear tarea' : 'Actualizar tarea'">
+	        </button>
+
+	        <a th:href="@{/tasks}" class="cancel">Cancelar</a>
+	    </div>
+
+	</form>
+  
+</body>
+</html>

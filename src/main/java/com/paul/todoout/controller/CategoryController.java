@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paul.todoout.entity.Category;
 import com.paul.todoout.service.CategoryService;
 
 @RestController
+@RequestMapping("/categories")
 public class CategoryController {
 
 	private final CategoryService categoryService;
@@ -23,7 +25,7 @@ public class CategoryController {
 		this.categoryService = categoryService;
 	}
 	
-	@PostMapping("/Category")
+	@PostMapping
 	public ResponseEntity<Void> createCategory(@RequestBody Category category) {
 		
 		categoryService.createCategory(category);
@@ -37,7 +39,7 @@ public class CategoryController {
 		categoryService.deleteCategory(id);
 	}
 	
-	@GetMapping("/Category")
+	@GetMapping
 	public List<Category> getCategories() {
 		return categoryService.getCategories();
 	}
